@@ -1,0 +1,269 @@
+(defn d-value [number]
+  (loop [div 2
+         n (/ number div)
+         result 0]
+    (if (= 0 (mod n div))
+         (conj div)
+      (recur (inc div)
+             (/ n div)
+              result))))
+(d-value 30)
+(prn "hola")
+(defn d-value [number]
+  (loop [div 2
+         n (/ number div)
+         result 0]
+    (prn "n: " n)
+    (prn "result: " result)
+    (if (= 0 (mod n div))
+         (conj div)
+      (recur (inc div)
+             (/ n div)
+              result))))
+(d-value 30)
+(defn d-value [number]
+  (loop [div 2
+         n (/ number div)
+         result 0]
+    (prn "n: " n)
+    (prn "result: " result)
+    (if (> n 1) 
+    (if (= 0 (mod n div))
+         (conj div)
+      (recur (inc div)
+             (/ n div)
+              result)))))
+(d-value 30)
+(defn d-value [number]
+  (loop [div 2
+         n (/ number div)
+         result 0]
+    (prn "n: " n)
+    (prn "result: " result)
+    (if (> n 1) 
+    (if (= 0 (mod n div))
+         (conj div)
+      (recur (inc div)
+             (/ n div)
+              div)))))
+(d-value 30)
+(defn d-value [number]
+  (loop [v 2
+         n number 
+         result []]
+    (if (< n 1)  
+    (if (zero? (mod n v))
+       v
+    (recur (inc v)
+           (/ n v)
+           (conj result))))))
+(d-value 2)
+(d-value 40)
+(defn d-value [number]
+  (loop [v 2
+         n (/ number v)
+         result [v]]
+    (if (< n 1)
+    (if (zero? (mod n v))
+       v
+    (recur (inc v)
+           (/ n v)
+           (conj result))))))
+(d-value 30)
+(defn d-value [number]
+  (loop [v 2
+         n (/ number v)]
+    (if (< n 1)
+    (if (zero? (mod n v))
+       v
+    (recur (inc v)
+           (/ n v))))))
+(d-value 20)
+(prn d-value)
+(defn d-value [number]
+  (loop [div 2]
+    (if (= 0 (mod number div))
+      div
+      (recur (inc div)))))
+(d-value 10)
+(defn of [number]
+  (loop [div (d-value number)
+         n (/ number div)
+         result []]
+    (if (< 1 n)
+      (recur (d-value n)
+             (/ n div)
+             (conj result)))))
+(of 60)
+(defn of [number]
+  (loop [div (d-value number)
+         n (/ number div)
+         result [ ]]
+    (if (< 1 n)
+      (recur (d-value n)
+             (/ n div)
+             (conj result)))))
+(d-value 30)
+(of 30)
+ 
+(defn of [number]
+  (loop [div (d-value number)
+         n (/ number div)]
+    (if (< 1 n)
+      (recur (d-value n)
+             (/ n div)))))
+(of 10)
+(defn of [number]
+  (loop [div (d-value number)
+         n  (/ number div)
+         result [ ]]
+    (if (< 1 n)
+      (recur (d-value n)
+             (/ n (d-value n))
+             (conj result)))))
+(of 30)
+(defn of [number]
+  (loop [div (d-value number)
+         n  (/ number div)
+         result [ ]]
+    (if (< 1 n)
+      (recur (d-value n)
+             (/ n (d-value n))
+             (conj result )))))
+(of 30)
+(defn of [number]
+  (loop [div (d-value number)
+         n  (/ number div)
+         result [ ]]
+    (if (< 1 n)
+      (recur (d-value n)
+             (/ n (d-value n))
+             (conj result (d-value n))))))
+(of 30)
+(defn of [number]
+  (loop [div (d-value number)
+         n  (/ number div)
+         result [ ]]
+    (if (< 1 n)
+      (recur (d-value n)
+             (/ n (d-value n))
+             (conj result (d-value n)))
+      (conj result (d-value n)))))
+(of 30)
+K
+(defn of [number]
+  (loop [div (d-value number)
+         n  (/ number div)
+         result [ ]]
+    (if (< 1 n)
+      (recur (d-value n)
+             (/ n (d-value n))
+             (conj result (d-value n)))
+      (conj result))))
+(of 30)
+(of 60)
+(defn of [number]
+  (loop [div (d-value number)
+         n  (/ number div)
+         result [div]]
+    (if (< 1 n)
+      (recur (d-value n)
+             (/ n (d-value n))
+             (conj result (d-value n)))
+      (conj result))))
+(of 30)
+lein test
+exit
+(defn d-value [number]
+  (loop [div 2]
+    (if (= 0 (mod number div))
+      div
+      (recur (inc div)))))
+(defn of [number]
+  (loop [div (d-value number)
+         n  (/ number div)
+         result [div]]
+    (if (< 1 n)
+      (recur (d-value n)
+             (/ n (d-value n))
+             (conj result (d-value n)))
+      (conj result))))
+(of 1)
+(defn of [number]
+  (loop [div (d-value number)
+         n  (/ number div)
+         result [div]]
+    (if (<= 1 n)
+      (recur (d-value n)
+             (/ n (d-value n))
+             (conj result (d-value n)))
+      (conj result))))
+(of 1)
+(d-value 1)
+(defn d-value [number]
+  (loop [div 2]
+    (>= 1 number)
+    (if (= 0 (mod number div))
+      div
+      (recur (inc div)))))
+(d-value 1)
+(defn d-value [number]
+  (loop [div 2]
+    (> number 1)
+    (if (= 0 (mod number div))
+      div
+      (recur (inc div)))))
+(d-value 1)
+(defn d-value [number]
+  (loop [div 2]
+    (if (= 0 (mod number div))
+      div
+      (recur (inc div)))))
+(d-value 1)
+(defn d-value [number]
+  (loop [div 2]
+    (if (= 1 number)
+      []
+    (if (= 0 (mod number div))
+      div
+      (recur (inc div))))))
+(d-value 1)
+(defn of [number]
+  (loop [n number
+         result []]
+    (if (> 1 n)
+       result
+      (let [div (d-value n)]
+        (recur (/ n div)
+               (conj result div))))))
+(of 30)
+(d-value 1)
+(d-value 2)
+(defn of [number]
+  (loop [n number
+         result []]
+    (if (> 1 n)
+       result
+      (let [div (d-value n)]
+        (recur (/ n div)
+               (conj result div))))))
+(defn of [number]
+((defn of [number]
+  (loop [n number
+         result []]
+    (if (= 1 n)
+       result
+      (let [div (d-value n)]
+        (recur (/ n div)
+               (conj result div))))))
+(defn of [number]
+  (loop [n number
+         result []]
+    (if (= 1 n)
+       result
+      (let [div (d-value n)]
+        (recur (/ n div)
+               (conj result div))))))
+(of 30)
+(of 1)
+exit
