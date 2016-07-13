@@ -1,0 +1,57 @@
+(defn retain [func collec]
+  (loop [coll collec
+         n (func (first coll))
+         result []]
+    (if (empty? coll)
+      result
+      (recur (rest coll)
+             (if (func (first (rest coll))) (first (rest (coll))) 0)
+             (conj result n )))))
+(retain even? [1 2 3 4])
+(defn retain [fun coll]
+  (loop [coll coll
+         n (fun (first coll))
+         result []]
+    (if (empty? coll)
+      result
+      (let [a (first (rest coll))]
+      (recur (rest coll)
+             (if (fun a) a 0)
+             (conj result a ))))))
+(retain even? [1 2 3 4])
+(defn retain [fun coll]
+  (loop [coll coll
+         n (fun (first coll))
+         result []]
+    (if (empty? coll)
+      (conj result)
+      (let [a (first (rest coll))]
+      (recur (rest coll)
+             (if (fun a) a 0)
+             (conj result a ))))))
+(retain even? [1 2 3 4])
+(retain even? '(1 2 3 4))
+(defn retain [fun coll]
+  (loop [coll coll
+         n (fun (first coll))
+         result []]
+    (if (empty? coll)
+       result
+      (let [a (first (rest coll))]
+      (recur (rest coll)
+             (if (fun a) a 0)
+             (conj result a))))))
+     
+(retain even? [3 5 8])
+(defn retain [fun coll]
+  (loop [coll coll
+         n (first coll)
+         result []]
+    (if (empty? coll)
+       result
+      (let [a (first (rest coll))]
+      (recur (rest coll)
+             (if (fun a) a 0)
+             (conj result a))))))
+(retain even? [2 4 5])
+exit
