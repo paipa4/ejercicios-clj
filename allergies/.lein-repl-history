@@ -1,0 +1,216 @@
+(defn allergies [number]
+  (if (> number 129)
+    (loop [n number
+           result []]
+      (if (= n 0)
+        (recur (- n (/ n 2))
+               (result n))))))
+(allergies 300)
+(defn allergies [number]
+  (if (> number 129)
+    (loop [n number
+           result []]
+      (if (= n 0)
+        (conj result)
+        (recur (- n (/ n 2))
+               (conj result n))))))
+(allergies 248)
+(defn tipes [number]
+    (loop [n (/ number 2)
+           result [n]]
+      (if (= n 0)
+        (conj result)
+        (recur (- n (/ n 2))
+               (conj result n)))))
+(allergies 248)
+(defn tipes [number]
+    (loop [numb number
+           n (/ number 2)
+           result [n]]
+      (if (= numb (reduce + (conj result (- n (/ n 2)))))
+        (conj result)
+        (recur (- n (/ n 2))
+               (conj result (- n (/ n 2)))))))
+(defn tipes [number]
+    (loop [n (/ number 2)
+           result [n]]
+      (if (= n 1)
+        (conj result)
+        (recur (- n (/ n 2))
+               (conj result (- n (/ n 2)))))))
+(allergies 248)
+(defn tipes [number]
+    (loop [n (/ number 2)
+           result [n]]
+      (if (= n 1)
+        (conj result)
+        (recur (/ n 2)
+               (conj result (/ n 2))))))
+(allergies 248)
+(tipes 248)
+(defn tipes [number]
+    (loop [n (/ number 2)
+           result [n]]
+      (if (<= n 1)
+        (conj result)
+        (recur (/ n 2)
+               (conj result (/ n 2))))))
+(tipes 248)
+(defn a [number]
+  (let [collec (128 64 32 16 8 4 2 1)]
+    (loop [coll collec]
+      (if (> number (first coll))
+         coll
+        (recur (rest coll))))))
+                
+(a 65)
+(defn a [number]
+    (loop [coll (128 64 32 16 8 4 2 1)]
+      (if (> number (first coll))
+         coll
+        (recur (rest coll)))))
+(a 65)
+(defn a [number]
+    (loop [coll '(128 64 32 16 8 4 2 1)]
+      (if (> number (first coll))
+         coll
+        (recur (rest coll)))))
+                
+(a 65)
+(defn is-all [number]
+  (if (contains? (all) number)
+      (all number)
+    (loop [coll (collect number)
+           f (first coll)
+           n number
+           result []]
+      (if (= n 0)
+        result
+        (recur (rest coll)
+               (first coll)
+               (- n (first coll))
+               (conj result n))))))
+               (defn all []
+         {1 :eggs
+          2 :peanuts
+          4 :shellfish
+          8 :strawberries
+          16 :tomatoes
+          32 :chocolate
+          64 :pollen
+          128 :cats})
+(defn collect [number]
+    (loop [coll '(128 64 32 16 8 4 2 1)]
+      (if (> number (first coll))
+         coll
+        (recur (rest coll)))))
+                
+(defn allergies [number]
+  (if (contains? (all) number)
+      (all number)
+    (loop [coll (collect number)
+           f (first coll)
+           n number
+           result []]
+      (if (= n 0)
+        result
+        (recur (rest coll)
+               (first coll)
+               (- n (first coll))
+               (conj result n))))))
+               
+(allergies 64)
+(defn allergies [number]
+  (if (contains? (all) number)
+      number
+    (loop [coll (collect number)
+           f (first coll)
+           n number
+           result []]
+      (if (= n 0)
+        result
+        (recur (rest coll)
+               (first coll)
+               (- n (first coll))
+               (conj result n))))))
+(allergies 64)
+(allergies 180)
+(allergies 248)
+(defn allergies [number]
+  (loop [ n number 
+          coll (number collect)
+          result []]
+    (if (= n 0)
+      (recur (- n (first coll))
+             (rest coll)
+             (conj result (- n (first coll)))))))
+       
+(allergies 64)
+(defn allergies [number]
+  (loop [ n number
+          coll (collect number)
+          result []]
+    (if (= n 0)
+      (recur (- n (first coll))
+             (rest coll)
+             (conj result (- n (first coll)))))))
+(allergies 64)
+(defn allergies [number]
+  (loop [ n number
+          coll (collect number)
+          result []]
+    (if (= n 0)
+      (recur (- n (first coll))
+             (rest coll)
+             (conj result (- n (first (rest coll))))))))
+(allergies 64)
+(defn allergies [number]
+  (loop [ n number
+          coll (collect n)
+          result []]
+    (if (= n 0)
+      (recur (- n (first coll))
+             (rest coll)
+             (conj result (- n (first (rest coll))))))))
+(allergies 54)
+(defn allergies [number]
+  (loop [ n number
+          coll (collect n)
+          result []]
+    (if (= n 0)
+      result
+      (recur (- n (first coll))
+             (rest coll)
+             (conj result (- n (first (rest coll))))))))
+(allergies 64)
+(defn allergies [number]
+  (loop [ n number
+          coll (collect n)
+          result []]
+    (if (= n 0)
+      (conj result)
+      (recur (- n (first coll))
+             (rest coll)
+             (conj result (- n (first (rest coll))))))))
+(allergies 64)
+(defn allergies [number]
+  (loop [ n number
+          coll (collect n)
+          result []]
+    (if (= n 0)
+      (conj result)
+      (recur (- n (first (rest coll)))
+             (rest coll)
+             (conj result (- n (first (rest coll))))))))
+(allergies 248)
+(defn allergies [number]
+  (loop [ n number
+          coll (collect n)
+          result []]
+    (if (= n 0)
+      (conj result)
+      (recur (- n (first coll))
+             (rest coll)
+             (conj result (- n (first (rest coll))))))))
+(allergies 64)
+exit
