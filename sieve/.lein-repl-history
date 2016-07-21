@@ -1,0 +1,102 @@
+(defn a-few-primes [number]
+  (loop [coll (no-multiple 2 number)
+         result []]
+    (if (< number (int (Math/pow (first coll) 2)))
+      result
+      (recur (no-multiple (first (rest coll)) number)
+             (result)))))
+(defn no-multiple [a b]
+(filter #(= 1 (mod % a)) (range 2 b)))
+       
+(defn a-few-primes [number]
+  (loop [coll (no-multiple 2 number)
+         result []]
+    (if (< number (int (Math/pow (first coll) 2)))
+      result
+      (recur (no-multiple (first (rest coll)) number)
+             (result)))))
+(a-few-primes 10)
+(defn no-multiple [a b]
+(filter #(= 1 (mod % a)) (range 2 b)))
+       
+(defn a-few-primes [number]
+  (loop [coll (no-multiple 2 number)
+         result []]
+    (if (< number (int (Math/pow (first coll) 2)))
+      result
+      (recur (no-multiple (first (rest coll)) number)
+             (conj result)))))
+(a-few-primes 10)
+(defn no-multiple [a b]
+(filter #(= 1 (mod % a)) (range 2 b)))
+       
+(defn a-few-primes [number]
+  (loop [coll (no-multiple 2 number)]
+    (if (< number (int (Math/pow (first coll) 2)))
+      coll
+      (recur (no-multiple (first (rest coll)) number)))))
+(a-few-primes 10)
+(defn no-multiple [a coll]
+(filter #(<= 1 (mod % a)) coll))
+       (defn sieve [number]
+         (loop [coll (filter #(= 1 (mod % 2)) (range 2 (inc number)))
+                result [2]]
+           (if (= number (first coll))
+             result
+             (let [a (first coll)]
+               (recur (rest coll)
+                      (conj result a (no-multiple (first coll) coll)))))))
+(sieve 120)
+exit
+lj
+(defn no-multiple [a coll]
+   (filter #(<= 1 (mod % a)) coll))
+ 
+        (defn sieve [number]
+          (loop [coll (filter #(= 1 (mod % 2)) (range 2 (inc number)))
+                 result [2]]
+            (if (= number (first coll))
+              result
+              (let [a (first coll)]
+                (recur (rest coll)
+                   (conj result a (no-multiple (first coll) coll)))))))
+(sieve 10)
+        (defn sieve [number]
+          (loop [coll (filter #(= 1 (mod % 2)) (range 2 (inc number)))
+                 result [2]]
+            (if (< number (first coll))
+              result
+              (let [a (first coll)]
+                (recur (rest coll)
+                   (conj result a (no-multiple (first coll) coll)))))))
+(sieve 10)
+        (defn sieve [number]
+          (loop [coll (filter #(= 1 (mod % 2)) (range 2 (inc number)))
+                 result [2]]
+            (if (= number (first coll))
+              result
+              (let [a (first coll)]
+                (recur (rest coll)
+                   (conj result a (no-multiple (first coll) (rest coll))))))))
+(sieve 10)
+(defn sieve [limit]
+  (loop [coll (no-multiple 2 (range 2 (inc limit)))
+         index 1]
+    (if (< limit (Math/pow (nth coll index) 2))
+      coll
+        (recur (no-multiple (nth coll index) coll)
+               (inc index)))))
+(sieve 10)
+(defn no-multiple [a coll]
+  (filter #(or (= % a)
+               (not= 0 (mod % a)))
+          coll))
+(defn sieve [limit]
+  (loop [coll (no-multiple 2 (range 2 (inc limit)))
+         index 1]
+    (if (< limit (Math/pow (nth coll index) 2))
+      coll
+        (recur (no-multiple (nth coll index) coll)
+               (inc index)))))
+(sieve 10)
+exit
