@@ -1,0 +1,118 @@
+(def nums {\0 0, \1 1, \2 2, \3 3, \4 4, \5 5, \6 6, \7 7, \8 8, \9 9})
+(defn sum [n]
+  (if (<= 10 (* n 2))
+    (- (* n 2) 9)
+    (* n 2)))
+(defn create-coll [n]
+  (map nums (filter #(list %)(str n))))
+(defn even [coll]
+  (map-indexed (fn [index b]
+                 (if (even? index)
+                   (sum b)
+                   b)) coll))
+(defn odd [coll]
+  (map-indexed (fn [index b]
+                 (if (odd? index)
+                   (sum b)
+                   b)) coll))
+(defn cheksum [number]
+  (if (even? (count (str number)))
+    (reduce + (even (create-coll number)))
+    (reduce + (odd (create-coll number)))))
+(defn valid? [n]
+  (= 0 (last (create-coll (cheksum n)))))
+(defn add-check-digit [n]
+  (if (valid? n)
+    n
+    (let [a 0]
+      (loop [coll (vec (create-coll n))
+             numb n]
+      (if (valid? numb)
+        n
+        (recur (conj coll (inc a))
+               (Integer. (string/join (conj coll (inc a))))))))))
+(ns luhn
+  (:require [clojure.string :as string]))
+(def nums {\0 0, \1 1, \2 2, \3 3, \4 4, \5 5, \6 6, \7 7, \8 8, \9 9})
+(defn sum [n]
+  (if (<= 10 (* n 2))
+    (- (* n 2) 9)
+    (* n 2)))
+(defn create-coll [n]
+  (map nums (filter #(list %)(str n))))
+(defn even [coll]
+  (map-indexed (fn [index b]
+                 (if (even? index)
+                   (sum b)
+                   b)) coll))
+(defn odd [coll]
+  (map-indexed (fn [index b]
+                 (if (odd? index)
+                   (sum b)
+                   b)) coll))
+(defn cheksum [number]
+  (if (even? (count (str number)))
+    (reduce + (even (create-coll number)))
+    (reduce + (odd (create-coll number)))))
+(defn valid? [n]
+  (= 0 (last (create-coll (cheksum n)))))
+(defn add-check-digit [n]
+  (if (valid? n)
+    n
+    (let [a 0]
+      (loop [coll (vec (create-coll n))
+             numb n]
+      (if (valid? numb)
+        n
+        (recur (conj coll (inc a))
+               (Integer. (string/join (conj coll (inc a))))))))))
+(add-check-digit 5)
+(defn add-check-digit [n]
+  (if (valid? n)
+    n
+      (loop [coll (vec (create-coll n))
+             a 0
+             numb n]
+      (if (valid? numb)
+        n
+        (recur (conj coll (inc a))
+               (inc a)
+               (Integer. (string/join (conj coll (inc a)))))))))
+(add-check-digit 5)
+(defn add-check-digit [n]
+  (if (valid? n)
+    n
+      (loop [coll (vec (create-coll n))
+             a 0
+             numb n]
+      (if (valid? numb)
+        n
+        (recur (coll)
+               (inc a)
+               (Integer. (string/join (conj coll (inc a)))))))))
+(add-check-digit 5)
+(defn add-check-digit [n]
+  (if (valid? n)
+    n
+    (let [coll (vec (create-coll n))]
+      (loop [a 0
+             numb n]
+      (if (valid? numb)
+        n
+        (recur (inc a)
+               (Integer. (string/join (conj coll (inc a))))))))))
+(add-check-digit 5)
+(add-check-digit 10)
+(defn add-check-digit [n]
+  (if (valid? n)
+    n
+    (let [coll (vec (create-coll n))]
+      (loop [a 0
+             numb n]
+      (if (valid? numb)
+        numb
+        (recur (inc a)
+               (Integer. (string/join (conj coll (inc a))))))))))
+         
+(add-check-digit 5)
+exit
