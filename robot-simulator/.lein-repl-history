@@ -1,0 +1,227 @@
+(ns robot-simulatoe)
+(def cardinal-points {:west 0, :north 1, :east 2, :south 3})
+(def robbie {:coordinates {:x -2 :y 1} :bearing :east})
+(defn turn-rigth [direction]
+  (let [index (inc (get cardinal-points direction))]
+    (if (= index 4)
+         :west
+      (last (find (vec (keys cardinal-points)) index)))))
+(defn turn-left [direction]
+  (let [index (dec (get cardinal-points direction))]
+    (if (< index 0)
+         :south
+      (last (find (vec (keys cardinal-points)) index)))))
+(defn change-direction [string robot]
+  (let [face-to (get robot :bearing)]
+  (if (= "L" string)
+    (turn-left face-to)
+    (turn-rigth face-to))))
+(defn change-position [s robot]
+  (let [coordinates (get robot :coordinates)
+        string (get robot :bearing)]
+    (if (= string :east)
+      (inc (get coordinates :x))
+      (if (= string :west)
+        (dec (get coordinates :x))
+        (if (= string :north)
+          (inc (get coordinates :y))
+          (dec (get coordinates :y)))))))
+(defn choose-function [letter]
+  (if (= "A" letter)
+    change-position
+    change-direction))
+          
+(defn simulate [string robot]
+   (loop [coll (map str string)
+          s    (first coll)  
+         func  (choose-function s)
+         result (func s robot)]
+     (if (empty? coll)
+       result
+       (recur (rest coll)
+              (first coll)
+              (choose-function (first (rest coll)))
+              (func result)))))
+(simulate "RAALAL" robbie)
+(ns robot-simulator)
+(def cardinal-points {:west 0, :north 1, :east 2, :south 3})
+(def robbie {:coordinates {:x -2 :y 1} :bearing :east})
+(defn turn-rigth [direction]
+  (let [index (inc (get cardinal-points direction))]
+    (if (= index 4)
+         :west
+      (last (find (vec (keys cardinal-points)) index)))))
+(defn turn-left [direction]
+  (let [index (dec (get cardinal-points direction))]
+    (if (< index 0)
+         :south
+      (last (find (vec (keys cardinal-points)) index)))))
+(defn change-direction [string robot]
+  (let [face-to (get robot :bearing)]
+  (if (= "L" string)
+    (turn-left face-to)
+    (turn-rigth face-to))))
+(defn change-position [s robot]
+  (let [coordinates (get robot :coordinates)
+        string (get robot :bearing)]
+    (if (= string :east)
+      (inc (get coordinates :x))
+      (if (= string :west)
+        (dec (get coordinates :x))
+        (if (= string :north)
+          (inc (get coordinates :y))
+          (dec (get coordinates :y)))))))
+(defn choose-function [letter]
+  (if (= "A" letter)
+    change-position
+    change-direction))
+          
+(defn simulate [string robot]
+   (loop [coll (map str string)
+          s    (first coll)  
+         func  (choose-function s)
+         result (func s robot)]
+     (if (empty? coll)
+       result
+       (recur (rest coll)
+              (first coll)
+              (choose-function (first (rest coll)))
+              (func result)))))
+(simulate "RAALAL" robbie)
+(ns robot-simulator)
+(def cardinal-points {:west 0, :north 1, :east 2, :south 3})
+(def robbie {:coordinates {:x -2 :y 1} :bearing :east})
+(defn turn-rigth [direction]
+  (let [index (inc (get cardinal-points direction))]
+    (if (= index 4)
+         :west
+      (last (find (vec (keys cardinal-points)) index)))))
+(defn turn-left [direction]
+  (let [index (dec (get cardinal-points direction))]
+    (if (< index 0)
+         :south
+      (last (find (vec (keys cardinal-points)) index)))))
+(defn change-direction [string robot]
+  (let [face-to (get robot :bearing)]
+  (if (= "L" string)
+    (assoc robot :bearing (turn-left face-to))
+    (assoc robot :bearing (turn-rigth face-to)))))
+(defn change-position [s robot]
+  (let [coordinates (get robot :coordinates)
+        string (get robot :bearing)]
+    (if (= string :east)
+     (assoc coordinates :x (inc (get coordinates :x)))
+      (if (= string :west)
+        (assoc coordinates :x (dec (get coordinates :x)))
+        (if (= string :north)
+          (assoc coordinates :y (inc (get coordinates :y)))
+          (assoc coordinates :y (dec (get coordinates :y))))))))
+(defn choose-function [letter]
+  (if (= "A" letter)
+    change-position
+    change-direction))
+          
+(defn simulate [string robot]
+   (loop [coll (map str string)
+          s    (first coll)  
+         func  (choose-function s)
+         result (func s robot)]
+     (if (empty? coll)
+       result
+       (recur (rest coll)
+              (first coll)
+              (choose-function (first (rest coll)))
+              (func result)))))
+(simulate "RAALAL" robbie)
+(ns robot-simulator)
+(def cardinal-points {:west 0, :north 1, :east 2, :south 3})
+(def robbie {:coordinates {:x -2 :y 1} :bearing :east})
+(defn turn-rigth [direction]
+  (let [index (inc (get cardinal-points direction))]
+    (if (= index 4)
+         :west
+      (last (find (vec (keys cardinal-points)) index)))))
+(defn turn-left [direction]
+  (let [index (dec (get cardinal-points direction))]
+    (if (< index 0)
+         :south
+      (last (find (vec (keys cardinal-points)) index)))))
+(defn change-direction [string robot]
+  (let [face-to (get robot :bearing)]
+  (if (= "L" string)
+    (assoc robot :bearing (turn-left face-to))
+    (assoc robot :bearing (turn-rigth face-to)))))
+(defn change-position [s robot]
+  (assoc robot :coordinates
+    (let [coordinates (get robot :coordinates)
+        string (get robot :bearing)]
+    (if (= string :east)
+     (assoc coordinates :x (inc (get coordinates :x)))
+      (if (= string :west)
+        (assoc coordinates :x (dec (get coordinates :x)))
+        (if (= string :north)
+          (assoc coordinates :y (inc (get coordinates :y)))
+          (assoc coordinates :y (dec (get coordinates :y)))))))))
+(defn choose-function [letter]
+  (if (= "A" letter)
+    change-position
+    change-direction))
+          
+(defn simulate [string robot]
+   (loop [coll (map str string)
+          s    (first coll)  
+         func  (choose-function s)
+         result (func s robot)]
+     (if (empty? coll)
+       result
+       (recur (rest coll)
+              (first coll)
+              (choose-function (first (rest coll) result))
+              (func result)))))
+(simulate "RAALAL" robbie)
+(defn simulate [string robot]
+   (loop [coll (map str string)
+          s    (first coll)  
+         func  (choose-function s)
+         result (func s robot)]
+     (if (empty? coll)
+       result
+       (recur (rest coll)
+              (first coll)
+              (choose-function (first (rest coll)) result))
+              (func result))))
+(defn choose-function [letter]
+  (if (= "A" letter)
+    change-position
+    change-direction))
+          
+(defn simulate [string robot]
+   (loop [coll (map str string)
+          s    (first coll)  
+         func  (choose-function s)
+         result (func s robot)]
+     (if (empty? coll)
+       result
+       (recur (rest coll)
+              (first coll)
+              (choose-function (first (rest coll)) result)
+              (func result)))))
+(simulate "RAALAL" robbie)
+(defn choose-function [letter]
+  (if (= "A" letter)
+    change-position
+    change-direction))
+          
+(defn simulate [string robot]
+   (loop [coll (map str string)
+          s    (first coll)  
+         func  (choose-function s)
+         result (func s robot)]
+     (if (empty? coll)
+       result
+       (recur (rest coll)
+              (first coll)
+              (choose-function (first (rest coll)))
+              (func (first (rest coll)) result)))))
+(simulate "RAALAL" robbie)
+exit
