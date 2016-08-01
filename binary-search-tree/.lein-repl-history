@@ -1,0 +1,38 @@
+(ns binary-search-tree)
+(defn singleton [root]
+  {:root root})
+(def value :root)
+(def left :left)
+(def right :right)
+(defn insert [node root]
+  (let [top (get root :root)]
+    (if (< top node)
+      (conj root (hash-map :right node))
+      (conj root (hash-map :left node )))))
+  
+(defn tree [nodes]
+  (let [root (singleton (first nodes))]
+  (apply clojure.set/union (map #(insert % root) (rest nodes))))) 
+   
+(defn from-list [collection]
+  (loop [coll-a collection
+         coll-b (drop 3 coll-a)
+         result '(tree (take 3 coll-a))]
+    (if (empty? coll-b)
+      result
+      (recur (rest coll-a)
+             (drop 2 coll-b)
+             (conj result tree (conj (take 2 (coll-b))(first (rest coll-a)))))))) 
+(from-list [4 2 6 1 3 7 5])
+(defn from-list [collection]
+  (loop [coll-a collection
+         coll-b (drop 3 coll-a)
+         result '(tree (take 3 coll-a))]
+    (if (empty? coll-b)
+      result
+      (recur (rest coll-a)
+             (drop 2 coll-b)
+             (conj result (tree (conj (take 2 (coll-b))(first (rest coll-a))))))))) 
+ 
+ (from-list [4 2 6 1 3 7 5])
+exit
