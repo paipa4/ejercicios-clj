@@ -1,9 +1,9 @@
 (ns etl
   (:require [clojure.string :as string]))
 
-(defn expand-kv [kv]
-  (zipmap (map string/lower-case (last kv))
-          (repeat (first kv))))
+(defn expand-kv [[k v]]
+  (zipmap (map string/lower-case v)
+          (repeat k)))
 
 
 (defn transform [hsh]

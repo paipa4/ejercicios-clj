@@ -15,4 +15,3 @@
       (let [div (d-value n)]
         (recur (/ n div)
                (conj result div))))))
-

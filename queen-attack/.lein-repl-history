@@ -1,0 +1,55 @@
+(ns queen-attack)
+(defn piece [pos bo]
+  "_")
+  
+(defn board [a]
+  (clojure.string/join "\n" (repeat 8 (clojure.string/join " " (repeat 8 (piece [] a))))))
+(defn board-string [hsh]
+  (if (empty? hsh)
+    empty-board
+    board))
+(defn sum [collections]
+ (loop [coll collections
+        result (first coll)]
+   (if (empty? coll)
+     result
+     (recur (rest coll)
+            (conj (map #(+ 10 %) (first coll)) result))))) 
+(sum ([11 12 13 14 15 16 17 18] [11 12 13 14 15 16 17 18] [11 12 13 14 15 16 17 18] [11 12 13 14 15 16 17 18] [11 12 13 14 15 16 17 18] [11 12 13 14 15 16 17 18] [11 12 13 14 15 16 17 18] [11 12 13 14 15 16 17 18])
+26
+​
+27
+​
+28
+(board {})
+(sum ([11 12 13 14 15 16 17 18] [11 12 13 14 15 16 17 18] [11 12 13 14 15 16 17 18] [11 12 13 14 15 16 17 18] [11 12 13 14 15 16 17 18] [11 12 13 14 15 16 17 18] [11 12 13 14 15 16 17 18] [11 12 13 14 15 16 17 18])
+(sum [11 12 13 14 15 16 17 18] [11 12 13 14 15 16 17 18] [11 12 13 14 15 16 17 18] [11 12 13 14 15 16 17 18] [11 12 13 14 15 16 17 18] [11 12 13 14 15 16 17 18] [11 12 13 14 15 16 17 18] [11 12 13 14 15 16 17 18])
+(sum '(1 2 3 4) '(1 2 3 4))
+(/ 6 3)
+(/ 6 4)
+(/ 7 5)
+(/ 6 3)
+(/ 7 4)
+(- 7 4)
+(- 6 3)
+(- 8 5)
+(int \a)
+ 
+(defn mult [collection]
+(loop [coll collection
+       result '()]
+  (if (empty? coll)
+    result
+    (recur (rest coll)
+            (conj result (* (first coll)(second coll)))))))
+  
+(mult '(1 2 3 4))
+(defn mult [collection]
+(loop [coll collection
+       result '()]
+  (if (= 1 (count coll))
+    result
+    (recur (rest coll)
+            (conj result (* (first coll)(second coll)))))))
+  
+(mult '(1 2 3 4))

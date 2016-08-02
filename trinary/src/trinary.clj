@@ -10,4 +10,3 @@
   (if (every? identity (map to-digit number))
     (reduce + (map-indexed #(* %2 (exp 3 %1))
                            (reverse (map to-digit number))))0))
-

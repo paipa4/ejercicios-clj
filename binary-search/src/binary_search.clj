@@ -1,10 +1,7 @@
 (ns binary-search)
 
 (defn middle [vect]
-  (let [midd (/ (count vect) 2)]
-    (if (integer? midd)
-         (int midd)
-         (int (- midd 0.5)))))
+  (quot (count vect) 2))
 
 
 (defn search-for [item coll]

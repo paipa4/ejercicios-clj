@@ -1,0 +1,26 @@
+(defn sum-of-multiples
+  ([a] (reduce + (filter #(or (= 0 (mod % 3))
+                              (= 0 (mod % 5)))
+                         (range 1 a))))
+  ([coll b]
+   (loop [c coll
+          result '()]
+     (if (empty? c)
+       result
+       (recur (rest c)
+              (conj (filter #(= 0 (mod % (first c))))))))))
+ 
+(sum-of-multiples [7 13 17] 20)
+(defn sum-of-multiples
+  ([a] (reduce + (filter #(or (= 0 (mod % 3))
+                              (= 0 (mod % 5)))
+                         (range 1 a))))
+  ([coll b]
+   (loop [c coll
+          result '()]
+     (if (empty? c)
+       result
+       (recur (rest c)
+              (conj (filter #(= 0 (mod b (first c))))))))))
+ (sum-of-multiples [7 13 17] 20)
+exit

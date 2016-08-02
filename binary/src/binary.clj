@@ -6,7 +6,7 @@
 
 (defn decimal [number]
   (loop [n-seq (map #(Integer. (str %)) (str number))
-         n (- (count n-seq) 1)
+         n (dec (count n-seq))
          resultado '()]
     (if (empty? n-seq)
       resultado
@@ -18,3 +18,4 @@
   (if (re-matches #"^\d+$" number)
     (reduce + (decimal number))
     0))
+
